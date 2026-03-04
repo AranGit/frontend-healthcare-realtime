@@ -9,6 +9,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
+const RREQUIRED_SYMBOL = <span className="text-red-500 font-bold">*</span>;
+
 export default function PatientPage() {
   const [patientID, setPatientID] = useState<string>("");
 
@@ -37,6 +39,8 @@ export default function PatientPage() {
     });
     return () => sub.unsubscribe();
   }, [watch, isSubscribed, debouncedSyncRef]);
+
+  const today = new Date().toISOString().split("T")[0];
 
   return (
     <div className="min-h-screen bg-slate-50 py-12 px-4">
@@ -91,18 +95,20 @@ export default function PatientPage() {
             errors={errors}
             onFocus={handleFocus}
             type="date"
+            max={today}
           />
 
           <div className="flex flex-col gap-1">
-            <label className="text-sm font-semibold text-slate-700">
+            <label className="flex gap-1 text-sm font-semibold text-slate-700">
               Gender
+              {RREQUIRED_SYMBOL}
             </label>
             <select
               {...register("gender")}
               defaultValue=""
               required
               onFocus={() => handleFocus("Gender")}
-              className={`min-h-[46px] text-black invalid:text-gray-300 border p-2.5 rounded-lg outline-none transition-all focus:ring-2 focus:ring-blue-500 ${errors.gender ? "border-red-500 bg-red-50" : "border-slate-300"}`}
+              className={`min-h-11.5 text-black invalid:text-gray-300 border p-2.5 rounded-lg outline-none transition-all focus:ring-2 focus:ring-blue-500 ${errors.gender ? "border-red-500 bg-red-50" : "border-slate-300"}`}
             >
               <option value="" disabled hidden>
                 Select Gender..
@@ -141,7 +147,7 @@ export default function PatientPage() {
           <InputField
             label="Phone Number"
             name="phoneNumber"
-            placeholder="085xxxxxxx"
+            placeholder="e.g. 0812345678"
             register={register}
             errors={errors}
             onFocus={handleFocus}
@@ -165,7 +171,7 @@ export default function PatientPage() {
           <div className="md:col-span-2">
             <label className="text-sm font-semibold text-slate-700 flex gap-1">
               Address
-              <span className="text-red-500 font-bold">*</span>
+              {RREQUIRED_SYMBOL}
             </label>
             <textarea
               {...register("address")}

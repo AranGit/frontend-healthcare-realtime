@@ -15,6 +15,7 @@ interface InputFieldProps {
   errors: FieldErrors<PatientFormValues>;
   onFocus: (name: string) => void;
   type?: string;
+  max?: string;
 }
 
 export const InputField = ({
@@ -25,6 +26,7 @@ export const InputField = ({
   errors,
   onFocus,
   type = "text",
+  max,
 }: InputFieldProps) => {
   const getNestedError = (
     fieldErrors: FieldErrors<PatientFormValues>,
@@ -85,6 +87,7 @@ export const InputField = ({
       <input
         type={type}
         placeholder={placeholder}
+        max={type === "date" ? max : undefined}
         {...register(name)}
         onFocus={() => onFocus(label)}
         className={`border p-2.5 rounded-lg outline-none transition-all focus:ring-2 placeholder-gray-300 text-black
