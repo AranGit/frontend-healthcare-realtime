@@ -27,24 +27,24 @@ Enhances Staff Experience: Prevents the dashboard UI from flickering due to rapi
 
 ## Tech Stack
 
-Framework: Next.js 16+ (App Router)
-Language: TypeScript
-Real-Time: Pusher
-Form Management: React Hook Form
-Schema Validation: Zod
-Styling: Tailwind CSS
+Framework: Next.js 16+ (App Router)  
+Language: TypeScript  
+Real-Time: Pusher  
+Form Management: React Hook Form  
+Schema Validation: Zod  
+Styling: Tailwind CSS  
 
 ## Environment Configuration
 
-# Pusher Client (Public)
+### Pusher Client (Public)
 
-NEXT_PUBLIC_PUSHER_KEY="your_key"
-NEXT_PUBLIC_PUSHER_CLUSTER="your_cluster"
+NEXT_PUBLIC_PUSHER_KEY="your_key"  
+NEXT_PUBLIC_PUSHER_CLUSTER="your_cluster"  
 
-# Pusher Server (Private)
+### Pusher Server (Private)
 
-PUSHER_APP_ID="your_app_id"
-PUSHER_SECRET="your_secret"
+PUSHER_APP_ID="your_app_id"  
+PUSHER_SECRET="your_secret"  
 
 ## Getting Started
 
@@ -62,10 +62,10 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the portal menus.
 
-# Patient Portal:
+### Patient Portal:
 
 [http://localhost:3000/patient](http://localhost:3000/patient)
 
-# Staff Dashboard:
+### Staff Dashboard:
 
 [http://localhost:3000/staff](http://localhost:3000/staff)
