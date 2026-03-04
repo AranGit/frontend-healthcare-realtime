@@ -85,7 +85,7 @@ export const PatientCard = ({
             <DataField
               label="Address"
               value={fields.address || "-"}
-              textOverflowClassName="line-clamp-3"
+              textOverflowClassName="line-clamp-3 break-words"
               activeField={activeField}
             />
           </div>
