@@ -44,7 +44,7 @@ The project follows a modular architecture designed for scalability and maintain
   - /patient: The data entry portal for patients.
   - /staff: The real-time monitoring dashboard for staffs.
   - /api: Backend routes for Pusher authentication and secure channel access.
-- src/components/: Divided by domain (Patient/Staff) to ensure high cohesion and low coupling.
+- src/components/: Shared UI Components
 - src/hooks/: Centralizes complex side effects and state management.
   - usePatientSync.ts: Manages Pusher triggers, debouncing, and browser visibility events.
   - useStaffMonitoring.ts: Handles real-time subscriptions and state merging for the dashboard.
@@ -56,7 +56,7 @@ The project follows a modular architecture designed for scalability and maintain
   - Mobile-First (Patient): The registration form uses a single-column stacked layout on mobile to simplify focus and reduce cognitive load during data entry.
   - Dashboard-Grid (Staff): On larger screens, the dashboard utilizes a multi-column grid, allowing staff to monitor dozens of active sessions simultaneously without scrolling.
 - Visual Feedback:
-  - Indicators: Used pulsing animations for "Typing" states to provide immediate visual confirmation that the system is working.
+  - Indicators: Used pulsing animations for "Typing" states to provide immediate visual confirmation that the system is working and the `Pencil` icon from `lucide-react`. This allows staff to pinpoint exactly which field is being modified in real-time.
   - Dynamic Validation: Required fields are marked with a red asterisk (\*)
 
 ### Component Architecture
