@@ -20,12 +20,10 @@ export const patientSchema = z.object({
     .object({
       name: z
         .string()
-        .min(1, "Emergency contact name is required")
         .optional()
         .or(z.literal("")),
       relationship: z
         .string()
-        .min(1, "Relationship is required")
         .optional()
         .or(z.literal("")),
     })
