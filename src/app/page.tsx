@@ -8,6 +8,7 @@ export default function Home() {
           Select your role
         </h1>
         <div className="flex w-full flex-col gap-6 sm:flex-row sm:justify-center">
+          {/* staff can be hidden if user role/permission is determined by auth logic, showing for demo purposes */}
           <Link href="/staff" className="w-full">
             <button className="cursor-pointer w-full rounded-md bg-blue-600 py-3 text-lg font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400">
               Staff
