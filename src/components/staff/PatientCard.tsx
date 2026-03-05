@@ -1,5 +1,6 @@
 import { PatientRecord } from "@/hooks/useStaffMonitoring";
 import { Pencil } from "lucide-react";
+import { useRef, useState } from "react";
 import { StatusBadge } from "./StatusBadge";
 
 const SECTION_CLASSNAME: string =
@@ -133,8 +134,25 @@ function DataField({
   textOverflowClassName?: string;
   activeField?: string | null;
 }) {
+  const [showTooltip, setShowTooltip] = useState(false);
+  const textRef = useRef<HTMLParagraphElement>(null);
+
   const isEmpty = value === "-" || value.trim() === "";
   const isActive = activeField?.toLowerCase() === label.toLowerCase();
+
+  const handleMouseEnter = () => {
+    const element = textRef.current;
+    if (element) {
+      // truncate
+      const isHorizontalOverflow = element.scrollWidth > element.offsetWidth;
+      // line-clamp
+      const isVerticalOverflow = element.scrollHeight > element.offsetHeight;
+      // or const hasOverflow = element.scrollWidth > element.offsetWidth || element.scrollHeight > element.offsetHeight;
+
+      setShowTooltip(isHorizontalOverflow || isVerticalOverflow);
+    }
+  };
+
   return (
     <div className="space-y-0.5">
       <p className="text-[9px] font-bold text-slate-400 uppercase flex gap-2">
@@ -143,11 +161,25 @@ function DataField({
           <Pencil className="w-3 h-3 text-blue-500 animate-bounce" />
         )}
       </p>
-      <p
-        className={`text-sm font-semibold ${textOverflowClassName} ${isEmpty ? "text-slate-300 italic" : "text-slate-700"} ${className}`}
-      >
-        {value}
-      </p>
+      <div className="relative">
+        <p
+          ref={textRef}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={() => setShowTooltip(false)}
+          className={`text-sm font-semibold ${textOverflowClassName} ${
+            isEmpty ? "text-slate-300 italic" : "text-slate-700"
+          } ${className}`}
+        >
+          {value}
+        </p>
+
+        {!isEmpty && showTooltip && (
+          <div className="absolute z-10 bottom-full left-0 mb-2 w-64 p-2 text-xs text-white bg-slate-800 rounded shadow-xl whitespace-normal wrap-break-word pointer-events-none animate-in fade-in zoom-in-95">
+            {value}
+            <div className="absolute -bottom-1 left-4 w-2 h-2 bg-slate-800 rotate-45" />
+          </div>
+        )}
+      </div>
     </div>
   );
 }
