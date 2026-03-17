@@ -1,6 +1,6 @@
 "use client";
 
-import { PatientCard } from "@/components/staff/PatientCard";
+import PatientCard from "@/components/staff/PatientCard";
 import { useStaffMonitoring } from "@/hooks/useStaffMonitoring";
 
 export default function StaffPage() {

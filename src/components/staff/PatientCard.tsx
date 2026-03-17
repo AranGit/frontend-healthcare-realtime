@@ -1,12 +1,12 @@
 import { PatientRecord } from "@/hooks/useStaffMonitoring";
 import { Pencil } from "lucide-react";
-import { useRef, useState } from "react";
+import { memo, useRef, useState } from "react";
 import { StatusBadge } from "./StatusBadge";
 
 const SECTION_CLASSNAME: string =
   "text-[10px] font-black text-slate-400 uppercase tracking-widest";
 
-export const PatientCard = ({
+const PatientCard = ({
   patientId,
   fields,
   status,
@@ -120,6 +120,8 @@ export const PatientCard = ({
     </div>
   </div>
 );
+
+export default memo(PatientCard);
 
 function DataField({
   label,
